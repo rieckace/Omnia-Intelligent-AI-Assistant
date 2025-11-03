@@ -7,9 +7,8 @@ from langchain.prompts import (
     ChatPromptTemplate,
     HumanMessagePromptTemplate,
     SystemMessagePromptTemplate,
+
 )
-# We no longer need MessagesPlaceholder
-# from langchain.prompts import MessagesPlaceholder 
 
 # Import your memory handler
 from src.memory_handler import create_longterm_memory
@@ -29,10 +28,6 @@ def initialize_chatbot():
     # Create the long-term memory object
     memory = create_longterm_memory()
 
-    # --- THIS IS THE CORRECTED PROMPT ---
-    # The 'history' variable from your memory is a single string.
-    # We must inject it as a variable inside the System Message, 
-    # NOT as a separate MessagesPlaceholder.
     prompt = ChatPromptTemplate(
         messages=[
             SystemMessagePromptTemplate.from_template(
